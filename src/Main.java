@@ -1,8 +1,9 @@
 import GUI.GUI;
 import READERS.BTC_TREA.BTC_MAIN;
 import READERS.BTC_TREA.BTC_Paths;
+import READERS.DOC_Reader;
 
-
+import java.nio.file.Paths;
 
 
 public class Main {
@@ -10,7 +11,9 @@ public class Main {
     public static void main(String[] args) {
         GUI gui = new GUI();
 
-        print_all_info();
+        //print_all_info();
+
+        new DOC_Reader(Paths.get("C:\\Users\\migue\\OneDrive - University of Edinburgh\\EDINBURGH\\Alternative Ratings\\Project_ARX\\src\\Files_Resource\\DOC\\BTC_TREA\\GOOD_BTC_TREA_SCA_SICAR_CAS_2019.09.30_CYGNUS_ALTERNATIVE_MASTER.doc"));
 
     }
 
@@ -33,6 +36,5 @@ public class Main {
 
 
     }
-
 
 }
