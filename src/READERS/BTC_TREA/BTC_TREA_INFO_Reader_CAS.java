@@ -1,4 +1,4 @@
-package BTC_TREA;
+package READERS.BTC_TREA;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,11 +27,12 @@ public class BTC_TREA_INFO_Reader_CAS {
 
     private Pattern pattern = Pattern.compile("-?\\d*([.,]\\d*)*?(\\d*)?");
 
-    public void All_Process_Extractor(Path path) {
+    public String All_Process_Extractor(Path path) {
         reader(path);
         number_extraction_from_file();
         value_Assigner();
         print_all_info();
+        return all_data_string();
 
     }
 
@@ -95,16 +96,16 @@ public class BTC_TREA_INFO_Reader_CAS {
         G_Distribution_Quarter = numbersArray.get(10);
         G_Distribution_YTD = numbersArray.get(11);
         G_Distribution_SI = numbersArray.get(12);
-        G_Distribution_Interest_Quarter = numbersArray.get(13);
-        G_Distribution_Interest_YTD = numbersArray.get(14);
-        G_Distribution_Interest_SI = numbersArray.get(15);
-        N_Distribution_Quarter = numbersArray.get(16);
-        N_Distribution_YTD = numbersArray.get(17);
-        N_Distribution_SI = numbersArray.get(18);
-        N_Distribution_ReCALL_Quarter = numbersArray.get(19);
-        N_Distribution_ReCALL_YTD = numbersArray.get(20);
-        N_Distribution_ReCALL_SI = numbersArray.get(21);
-        Unfunded_Commitment_SI = numbersArray.get(22);
+        G_Distribution_Interest_Quarter = numbersArray.get(19);
+        G_Distribution_Interest_YTD = numbersArray.get(20);
+        G_Distribution_Interest_SI = numbersArray.get(21);
+        N_Distribution_Quarter = numbersArray.get(28);
+        N_Distribution_YTD = numbersArray.get(29);
+        N_Distribution_SI = numbersArray.get(30);
+        N_Distribution_ReCALL_Quarter = numbersArray.get(31);
+        N_Distribution_ReCALL_YTD = numbersArray.get(32);
+        N_Distribution_ReCALL_SI = numbersArray.get(33);
+        Unfunded_Commitment_SI = numbersArray.get(34);
     }
 
 
@@ -155,6 +156,47 @@ public class BTC_TREA_INFO_Reader_CAS {
 
         System.out.println("Unfunded Commitment: " + Unfunded_Commitment_SI);
 
+    }
+
+    protected String all_data_string() {
+        String data =  String.format("Investment Commitment: %s \n" +
+                "Total Fund Size: %s \n\n" +
+
+                "Capital Call - Quarter: %s \n" +
+                "Capital Call - YTD: %s \n" +
+                "Capital Call - Since Inception: %s \n\n" +
+
+                "Capital Call (Inside Investment) - Quarter: %s \n" +
+                "Capital Call (Inside Investment) - YTD: %s \n" +
+                "Capital Call (Inside Investment) - Since Inception: %s \n\n" +
+
+                "Gross Distribution - Quarter: %s \n" +
+                "Gross Distribution - YTD: %s \n" +
+                "Gross Distribution - Since Inception: %s \n\n" +
+
+                "Gross Distribution (Interest) - Quarter: %s \n" +
+                "Gross Distribution (Interest) - YTD: %s \n" +
+                "Gross Distribution (Interest) - Since Inception: %s \n\n" +
+
+                "Net Distribution - Quarter: %s \n" +
+                "Net Distribution - YTD: %s \n" +
+                "Net Distribution - Since Inception: %s \n\n" +
+
+                "Net Distribution (Recallable) - Quarter: %s \n" +
+                "Net Distribution (Recallable) - YTD: %s \n" +
+                "Net Distribution (Recallable) - Since Inception: %s \n\n" +
+
+                "Unfunded Commitment: %s \n\n",
+                Investment_Commitment,Total_Fund_Size,
+                CC_Quarter, CC_YTD,CC_SI,
+                CC_Inside_Investment_Quarter, CC_Inside_Investment_YTD, CC_Inside_Investment_SI,
+                G_Distribution_Quarter, G_Distribution_YTD, G_Distribution_SI,
+                G_Distribution_Interest_Quarter, G_Distribution_Interest_YTD, G_Distribution_Interest_SI,
+                N_Distribution_Quarter, N_Distribution_YTD, N_Distribution_SI,
+                N_Distribution_ReCALL_Quarter, N_Distribution_ReCALL_YTD, N_Distribution_ReCALL_SI,
+                Unfunded_Commitment_SI);
+
+        return data;
     }
 
     /*_____________________ GETTER FUNCTIONS _____________________*/

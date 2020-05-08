@@ -1,17 +1,22 @@
-import BTC_TREA.BTC_MAIN;
-import BTC_TREA.BTC_Paths;
+import GUI.GUI;
+import READERS.BTC_TREA.BTC_MAIN;
+import READERS.BTC_TREA.BTC_Paths;
+
+
 
 
 public class Main {
 
-
     public static void main(String[] args) {
+        GUI gui = new GUI();
 
         print_all_info();
 
     }
 
     private static void print_all_info() {
+
+
 
         BTC_MAIN BTC_Info_Getter = new BTC_MAIN();
         BTC_Paths paths_document = new BTC_Paths();
@@ -24,6 +29,8 @@ public class Main {
         System.out.println("\n\n");
 
         BTC_Info_Getter.new_research_CCN(paths_document.BTC_TREA_SCA_SICAR_CCN_2019_07_26_CYGNUS_ALTERNATIVE_MASTER);
+
+
 
     }
 

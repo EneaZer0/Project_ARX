@@ -1,4 +1,4 @@
-package BTC_TREA;
+package READERS.BTC_TREA;
 
 
 import java.nio.file.Path;
@@ -30,7 +30,7 @@ public class BTC_TREA_INFO_Reader_CCN {
     private void CC_extractor() {
         numberArray = new ArrayList<>();
         extractor(dataArray, pattern, numberArray);
-        BTC_TREA_Capital_Call = numberArray.get(7);
+        BTC_TREA_Capital_Call = numberArray.get(10);
         System.out.println("Capital Call due amount: " + BTC_TREA_Capital_Call);
 
     }
@@ -41,8 +41,10 @@ public class BTC_TREA_INFO_Reader_CCN {
 
             for (String word : words) {
                 Double number;
-                if (pattern.matcher(word).matches() && !word.equals("-")) {
-                    if (word.contains(",")) {
+                if (pattern.matcher(word).matches()) {
+                    if (word.equals("-")){
+                        number = 0.0;
+                    } else if (word.contains(",")) {
                         word = word.replaceAll("\\,", "");
                         if (word.endsWith(".")) {
                             word = word.substring(0, word.length()-1);
@@ -55,6 +57,7 @@ public class BTC_TREA_INFO_Reader_CCN {
                     numberArray.add(number);
                 }
             }
+
         }
     }
 
