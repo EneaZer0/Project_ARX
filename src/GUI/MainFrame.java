@@ -2,14 +2,12 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
 
     private TextPanel textPanel;
-    private JButton button;
     private Toolbar toolbar;
+    private FormPanel formPanel;
 
     public MainFrame(){
         super("Hello World");
@@ -18,20 +16,18 @@ public class MainFrame extends JFrame {
 
         toolbar = new Toolbar();
         textPanel = new TextPanel();
-        button = new JButton("Chick me");
+        formPanel = new FormPanel();
 
-        toolbar.setTextPanel(textPanel);
-
-        button.addActionListener(new ActionListener() {
+        toolbar.setStringListener(new StringListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                textPanel.appendText("Hello\n");
+            public void textEmitted(String text) {
+                textPanel.appendText(text);
             }
         });
 
+        add(formPanel, BorderLayout.WEST);
         add(toolbar, BorderLayout.NORTH);
         add(textPanel, BorderLayout.CENTER);
-        add(button, BorderLayout.SOUTH);
 
         setSize(600,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

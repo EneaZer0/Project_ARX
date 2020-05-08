@@ -1,10 +1,11 @@
 package READERS.BTC_TREA;
 
 
+import READERS.Extractor;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 
 public class BTC_TREA_INFO_Reader_CCN {
@@ -14,7 +15,7 @@ public class BTC_TREA_INFO_Reader_CCN {
     private ArrayList<Double> numberArray;
     private BTC_TREA_INFO_Reader_CAS reader_cas;
 
-    private Pattern pattern = Pattern.compile("-?\\d*([.,]\\d*)*?(\\d*)?");
+
 
     public void All_Process_Extractor(Path path) {
 
@@ -29,36 +30,11 @@ public class BTC_TREA_INFO_Reader_CCN {
 
     private void CC_extractor() {
         numberArray = new ArrayList<>();
-        extractor(dataArray, pattern, numberArray);
+        Extractor extractor = new Extractor(dataArray);
+        numberArray = extractor.getNumberArray();
         BTC_TREA_Capital_Call = numberArray.get(10);
         System.out.println("Capital Call due amount: " + BTC_TREA_Capital_Call);
 
-    }
-
-    static void extractor(ArrayList<String> dataArray, Pattern pattern, ArrayList<Double> numberArray) {
-        for (String str : dataArray) {
-            String[] words = str.split(" ");
-
-            for (String word : words) {
-                Double number;
-                if (pattern.matcher(word).matches()) {
-                    if (word.equals("-")){
-                        number = 0.0;
-                    } else if (word.contains(",")) {
-                        word = word.replaceAll("\\,", "");
-                        if (word.endsWith(".")) {
-                            word = word.substring(0, word.length()-1);
-                        }
-                        number = Double.parseDouble(word);
-
-                    } else {
-                        number = Double.parseDouble(word);
-                    }
-                    numberArray.add(number);
-                }
-            }
-
-        }
     }
 
     /* _____________ GETTER ___________________*/

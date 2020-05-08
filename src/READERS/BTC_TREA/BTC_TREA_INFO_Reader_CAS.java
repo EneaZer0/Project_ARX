@@ -1,5 +1,7 @@
 package READERS.BTC_TREA;
 
+import READERS.Extractor;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
@@ -25,7 +27,7 @@ public class BTC_TREA_INFO_Reader_CAS {
     private Double N_Distribution_ReCALL_Quarter, N_Distribution_ReCALL_YTD, N_Distribution_ReCALL_SI;
     private Double Unfunded_Commitment_SI;
 
-    private Pattern pattern = Pattern.compile("-?\\d*([.,]\\d*)*?(\\d*)?");
+    private Pattern pattern = Pattern.compile("\\(?-?\\d*([.,]\\d*)*?(\\d*)?\\)?");
 
     public String All_Process_Extractor(Path path) {
         reader(path);
@@ -78,8 +80,8 @@ public class BTC_TREA_INFO_Reader_CAS {
         numbersArray = new ArrayList<>();
         ArrayList<String> data = dataArray;
 
-        BTC_TREA_INFO_Reader_CCN.extractor(data, pattern, numbersArray);
-
+        Extractor extractor = new Extractor(dataArray);
+        numbersArray = extractor.getNumberArray();
 
         return numbersArray;
     }
