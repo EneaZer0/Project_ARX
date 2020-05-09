@@ -90,12 +90,21 @@ public class Generic_DOC_DOCX_Reader {
         numberArray = new ArrayList<>();
         numberArray = extractor.getNumberArray();
 
+        /*
         System.out.println(dataArray.toString());
         System.out.println("\n");
         System.out.println(numberArray.toString());
         System.out.println("\n");
         System.out.println("\n");
+        */
+
     }
 
+    public ArrayList<String> getDataArray() {
+        return dataArray;
+    }
 
+    public ArrayList<Double> getNumberArray() {
+        return numberArray;
+    }
 }

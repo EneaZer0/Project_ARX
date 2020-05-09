@@ -17,7 +17,7 @@ public class Generic_Number_Extractor {
             String[] words = str.split(" ");
 
             for (String word : words) {
-                Double number;
+                Double number = 0.0;
                 if (pattern.matcher(word).matches()) {
                     if (word.equals("-")){
                         number = 0.0;
@@ -31,7 +31,10 @@ public class Generic_Number_Extractor {
 
                     } else {
                         word = negativeNumber(word);
-                        number = Double.parseDouble(word);
+                        if (!word.isEmpty()) {
+                            number = Double.parseDouble(word);
+                        }
+
                     }
                     numberArray.add(number);
                 }
@@ -41,10 +44,6 @@ public class Generic_Number_Extractor {
 
     }
 
-    public ArrayList<Double> getNumberArray() {
-        return numberArray;
-    }
-
     private String negativeNumber(String word) {
         if (word.startsWith("(")) {
             word = word.replaceAll("\\(", "");
@@ -52,6 +51,10 @@ public class Generic_Number_Extractor {
             word = "-" + word;
         }
         return word;
+    }
+
+    public ArrayList<Double> getNumberArray() {
+        return numberArray;
     }
 }
 
