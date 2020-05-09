@@ -1,7 +1,7 @@
 package READERS.BTC_TREA;
 
 
-import READERS.Extractor;
+import READERS.Generic_Number_Extractor;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class BTC_TREA_INFO_Reader_CCN {
 
     private void CC_extractor() {
         numberArray = new ArrayList<>();
-        Extractor extractor = new Extractor(dataArray);
+        Generic_Number_Extractor extractor = new Generic_Number_Extractor(dataArray);
         numberArray = extractor.getNumberArray();
         BTC_TREA_Capital_Call = numberArray.get(10);
         System.out.println("Capital Call due amount: " + BTC_TREA_Capital_Call);

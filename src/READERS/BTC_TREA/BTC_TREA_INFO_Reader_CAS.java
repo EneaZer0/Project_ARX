@@ -1,6 +1,6 @@
 package READERS.BTC_TREA;
 
-import READERS.Extractor;
+import READERS.Generic_Number_Extractor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -80,7 +80,7 @@ public class BTC_TREA_INFO_Reader_CAS {
         numbersArray = new ArrayList<>();
         ArrayList<String> data = dataArray;
 
-        Extractor extractor = new Extractor(dataArray);
+        Generic_Number_Extractor extractor = new Generic_Number_Extractor(dataArray);
         numbersArray = extractor.getNumberArray();
 
         return numbersArray;

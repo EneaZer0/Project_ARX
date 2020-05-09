@@ -3,12 +3,12 @@ package READERS;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-public class Extractor {
+public class Generic_Number_Extractor {
 
     private Pattern pattern;
     private ArrayList<Double> numberArray;
 
-    public Extractor(ArrayList<String> dataArray){
+    public Generic_Number_Extractor(ArrayList<String> dataArray){
 
         pattern = Pattern.compile("\\(?-?\\d*([.,]\\d*)*?(\\d*)?\\)?");
         numberArray = new ArrayList<>();
@@ -26,14 +26,11 @@ public class Extractor {
                         if (word.endsWith(".")) {
                             word = word.substring(0, word.length()-1);
                         }
-                        if (word.startsWith("(")) {
-                            word = word.replaceAll("\\(", "");
-                            word = word.replaceAll("\\)", "" );
-                            word = "-" + word;
-                        }
+                        word = negativeNumber(word);
                         number = Double.parseDouble(word);
 
                     } else {
+                        word = negativeNumber(word);
                         number = Double.parseDouble(word);
                     }
                     numberArray.add(number);
@@ -46,6 +43,15 @@ public class Extractor {
 
     public ArrayList<Double> getNumberArray() {
         return numberArray;
+    }
+
+    private String negativeNumber(String word) {
+        if (word.startsWith("(")) {
+            word = word.replaceAll("\\(", "");
+            word = word.replaceAll("\\)", "" );
+            word = "-" + word;
+        }
+        return word;
     }
 }
 
