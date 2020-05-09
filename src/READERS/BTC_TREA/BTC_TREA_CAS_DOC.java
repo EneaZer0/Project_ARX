@@ -1,14 +1,13 @@
 package READERS.BTC_TREA;
 
 import READERS.Generic_DOC_DOCX_Reader;
+import READERS.Generic_Process_DOC;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class BTC_TREA_CAS_DOC {
-
-    private ArrayList<Double> numbersArray;
+public class BTC_TREA_CAS_DOC extends Generic_Process_DOC {
 
     private Double Investment_Commitment, Total_Fund_Size;
     private Double CC_Quarter, CC_YTD, CC_SI;
@@ -19,21 +18,19 @@ public class BTC_TREA_CAS_DOC {
     private Double N_Distribution_ReCALL_Quarter, N_Distribution_ReCALL_YTD, N_Distribution_ReCALL_SI;
     private Double Unfunded_Commitment_SI;
 
-
-    public BTC_TREA_CAS_DOC(Path path) {
-
-        Objects.requireNonNull(path);
-        numbersArray = new ArrayList<>();
-
-        Generic_DOC_DOCX_Reader read_BTC_TREA_CAS_DOC = new Generic_DOC_DOCX_Reader(path);
-        numbersArray = read_BTC_TREA_CAS_DOC.getNumberArray();
-
-        value_Assigner();
-        print_all_info();
-
+    public BTC_TREA_CAS_DOC(Path path){
+        super();
+        generalProcess(path);
     }
 
-    private void value_Assigner() {
+    @Override
+    public void generalProcess(Path path) {
+        super.generalProcess(path);
+    }
+
+    @Override
+    public void value_Assigner(ArrayList<Double> numbersArray) {
+
         Investment_Commitment = numbersArray.get(2);
         Total_Fund_Size = numbersArray.get(3);
         CC_Quarter = numbersArray.get(4);
@@ -57,7 +54,8 @@ public class BTC_TREA_CAS_DOC {
         Unfunded_Commitment_SI = numbersArray.get(34);
     }
 
-    private void print_all_info() {
+    @Override
+    public void print_all_info(ArrayList<Double> numbersArray) {
 
         System.out.println("\n");
 
@@ -103,7 +101,6 @@ public class BTC_TREA_CAS_DOC {
         System.out.println("\n");
 
         System.out.println("Unfunded Commitment: " + Unfunded_Commitment_SI);
-
     }
 
 }
