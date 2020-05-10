@@ -1,11 +1,9 @@
 package READERS.BTC_TREA;
 
-import READERS.Generic_DOC_DOCX_Reader;
 import READERS.Generic_Process_DOC;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class BTC_TREA_CAS_DOC extends Generic_Process_DOC {
 
@@ -17,6 +15,8 @@ public class BTC_TREA_CAS_DOC extends Generic_Process_DOC {
     private Double N_Distribution_Quarter, N_Distribution_YTD, N_Distribution_SI;
     private Double N_Distribution_ReCALL_Quarter, N_Distribution_ReCALL_YTD, N_Distribution_ReCALL_SI;
     private Double Unfunded_Commitment_SI;
+    private Double NetInvestedCapitalMultiple;
+    private Double NetIRR;
 
     public BTC_TREA_CAS_DOC(Path path){
         super();
@@ -34,25 +34,27 @@ public class BTC_TREA_CAS_DOC extends Generic_Process_DOC {
 
         Investment_Commitment = numbersArray.get(2);
         Total_Fund_Size = numbersArray.get(3);
-        CC_Quarter = numbersArray.get(4);
-        CC_YTD = numbersArray.get(5);
-        CC_SI = numbersArray.get(6);
-        CC_Inside_Investment_Quarter = numbersArray.get(7);
-        CC_Inside_Investment_YTD = numbersArray.get(8);
-        CC_Inside_Investment_SI = numbersArray.get(9);
-        G_Distribution_Quarter = numbersArray.get(10);
-        G_Distribution_YTD = numbersArray.get(11);
-        G_Distribution_SI = numbersArray.get(12);
-        G_Distribution_Interest_Quarter = numbersArray.get(19);
-        G_Distribution_Interest_YTD = numbersArray.get(20);
-        G_Distribution_Interest_SI = numbersArray.get(21);
-        N_Distribution_Quarter = numbersArray.get(28);
-        N_Distribution_YTD = numbersArray.get(29);
-        N_Distribution_SI = numbersArray.get(30);
-        N_Distribution_ReCALL_Quarter = numbersArray.get(31);
-        N_Distribution_ReCALL_YTD = numbersArray.get(32);
-        N_Distribution_ReCALL_SI = numbersArray.get(33);
-        Unfunded_Commitment_SI = numbersArray.get(34);
+        CC_Quarter = numbersArray.get(6);
+        CC_YTD = numbersArray.get(7);
+        CC_SI = numbersArray.get(8);
+        CC_Inside_Investment_Quarter = numbersArray.get(9);
+        CC_Inside_Investment_YTD = numbersArray.get(10);
+        CC_Inside_Investment_SI = numbersArray.get(11);
+        G_Distribution_Quarter = numbersArray.get(12);
+        G_Distribution_YTD = numbersArray.get(13);
+        G_Distribution_SI = numbersArray.get(14);
+        G_Distribution_Interest_Quarter = numbersArray.get(21);
+        G_Distribution_Interest_YTD = numbersArray.get(22);
+        G_Distribution_Interest_SI = numbersArray.get(23);
+        N_Distribution_Quarter = numbersArray.get(30);
+        N_Distribution_YTD = numbersArray.get(31);
+        N_Distribution_SI = numbersArray.get(32);
+        N_Distribution_ReCALL_Quarter = numbersArray.get(33);
+        N_Distribution_ReCALL_YTD = numbersArray.get(34);
+        N_Distribution_ReCALL_SI = numbersArray.get(35);
+        Unfunded_Commitment_SI = numbersArray.get(36);
+        NetInvestedCapitalMultiple = numbersArray.get(62);
+        NetIRR = numbersArray.get(64);
     }
 
     @Override
@@ -102,6 +104,11 @@ public class BTC_TREA_CAS_DOC extends Generic_Process_DOC {
         System.out.println("\n");
 
         System.out.println("Unfunded Commitment: " + Unfunded_Commitment_SI);
+
+        System.out.println("\n");
+
+        System.out.println("Net Invested Capital Multiple: " + NetInvestedCapitalMultiple);
+        System.out.println("Net IRR: " + NetIRR);
     }
 
 }
