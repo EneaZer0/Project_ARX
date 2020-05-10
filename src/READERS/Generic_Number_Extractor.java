@@ -10,7 +10,7 @@ public class Generic_Number_Extractor {
 
     public Generic_Number_Extractor(ArrayList<String> dataArray){
 
-        pattern = Pattern.compile("\\(?-?\\d*([.,]\\d*)*?(\\d*)?\\)?[x%]?");
+        pattern = Pattern.compile("\\$?\\(?-?\\d*([.,]\\d*)*?(\\d*)?\\)?[x%]?");
         numberArray = new ArrayList<>();
 
         for (String str : dataArray) {
@@ -27,14 +27,12 @@ public class Generic_Number_Extractor {
                             word = word.substring(0, word.length()-1);
                         }
                         word = negativeNumber(word);
+                        word = wordChecker(word);
                         number = Double.parseDouble(word);
 
                     } else {
                         word = negativeNumber(word);
-                        if(word.endsWith("x") || word.endsWith("%")) {
-                            word = word.replaceAll("x", "" );
-                            word = word.replaceAll("%", "" );
-                        }
+                        word = wordChecker(word);
                         if (!word.isEmpty()) {
                             number = Double.parseDouble(word);
                         }
@@ -59,6 +57,15 @@ public class Generic_Number_Extractor {
 
     public ArrayList<Double> getNumberArray() {
         return numberArray;
+    }
+
+    private String wordChecker(String word) {
+        if(word.endsWith("x") || word.endsWith("%") || word.startsWith("$")) {
+            word = word.replaceAll("x", "" );
+            word = word.replaceAll("%", "" );
+            word = word.replaceAll("\\$", "");
+        }
+        return word;
     }
 }
 

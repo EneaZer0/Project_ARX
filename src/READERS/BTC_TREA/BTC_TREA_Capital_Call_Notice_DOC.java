@@ -5,11 +5,11 @@ import READERS.Generic_Process_DOC;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class BTC_TREA_CNN_DOC extends Generic_Process_DOC {
+public class BTC_TREA_Capital_Call_Notice_DOC extends Generic_Process_DOC {
 
     private Double BTC_TREA_Capital_Call;
 
-    public BTC_TREA_CNN_DOC(Path path) {
+    public BTC_TREA_Capital_Call_Notice_DOC(Path path) {
         super();
         generalProcess(path);
 

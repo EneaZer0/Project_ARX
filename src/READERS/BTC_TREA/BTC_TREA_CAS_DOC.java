@@ -31,7 +31,6 @@ public class BTC_TREA_CAS_DOC extends Generic_Process_DOC {
     @Override
     public void value_Assigner(ArrayList<Double> numbersArray) {
 
-
         Investment_Commitment = numbersArray.get(2);
         Total_Fund_Size = numbersArray.get(3);
         CC_Quarter = numbersArray.get(6);
