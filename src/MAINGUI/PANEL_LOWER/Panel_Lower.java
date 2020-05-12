@@ -1,10 +1,11 @@
 package MAINGUI.PANEL_LOWER;
 
-import MAINGUI.StringListenerMain;
+import MAINGUI.CleanTerminalListener;
 import MAINGUI.TypeDocEvent;
 import MAINGUI.TypeDocEventListener;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +16,10 @@ public class Panel_Lower extends JPanel {
      * JButton used to start the process of extraction
      */
     private JButton startButton;
+    private JButton cleanTerminalButton;
 
     private TypeDocEventListener typeDocEventListener;
+    private CleanTerminalListener cleanTerminalListener;
 
     public Panel_Lower_Left panel_lower_left;
 
@@ -29,30 +32,19 @@ public class Panel_Lower extends JPanel {
         setPreferredSize(dimension);
 
         panel_lower_left = new Panel_Lower_Left();
-        /*
-        panel_lower_left.setTypeDocEvent(new TypeDocEventListener() {
-            @Override
-            public void typeDocEventOccurred(TypeDocEvent event) {
-                String path = event.getPath();
-                String fond = event.getFond();
-                String typeFond = event.getTypeFond();
-
-                information = "Path: " + path + ", Fond: " + fond + ", Type of Document: " + typeFond;
-            }
-        });
-
-         */
 
         startButton = new JButton("Start Extraction");
         startButton.setPreferredSize(new Dimension(125,25));
 
-        // Border innerBorder = BorderFactory.createTitledBorder("");
-        // Border outerBorder = BorderFactory.createEmptyBorder(10,10,10,10);
-        // setBorder(BorderFactory.createCompoundBorder(outerBorder, innerBorder));
+        cleanTerminalButton = new JButton("Clean Terminal");
+        cleanTerminalButton.setPreferredSize(new Dimension(125,25));
 
         pressingStartButton();
 
-        layoutComponents();
+        pressingCleanButton();
+
+        //layoutComponents();
+        layoutBoxes();
     }
 
 
@@ -73,8 +65,20 @@ public class Panel_Lower extends JPanel {
 
                 if (typeDocEventListener != null) {
                     typeDocEventListener.typeDocEventOccurred(event);
+                    clearTextInputs();
                 }
 
+            }
+        });
+    }
+
+    private void pressingCleanButton() {
+        cleanTerminalButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (cleanTerminalListener != null) {
+                    cleanTerminalListener.cleanTerminalButtonPressed();
+                }
             }
         });
     }
@@ -104,12 +108,47 @@ public class Panel_Lower extends JPanel {
         gridBagConstraints.insets = new Insets(0, 0, 0, 30);
         gridBagConstraints.gridx = 1;
         add(startButton, gridBagConstraints);
+
+        gridBagConstraints.anchor = GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new Insets(0, 0, 0, 30);
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 1;
+        add(cleanTerminalButton, gridBagConstraints);
     }
+
+    private void layoutBoxes() {
+
+        JPanel left = new JPanel();
+        JPanel right = new JPanel();
+        right.setPreferredSize(new Dimension(200,250));
+
+        setLayout(new BorderLayout());
+
+        add(left, BorderLayout.WEST);
+        add(right, BorderLayout.EAST);
+
+        left.add(panel_lower_left);
+        Border boder = BorderFactory.createEmptyBorder(100,5,5,5);
+        FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER, 0, 0);
+        right.setBorder(boder);
+        right.add(startButton, flowLayout);
+        right.add(cleanTerminalButton, flowLayout);
+    }
+
 
     public void setTypeDocEventListener(TypeDocEventListener listener) {
         this.typeDocEventListener = listener;
     }
 
+    public void setCleanTerminalButtonListner(CleanTerminalListener listner) {
+        this.cleanTerminalListener = listner;
+    }
+
+    private void clearTextInputs(){
+        panel_lower_left.pathInput.setText("");
+        panel_lower_left.fondBox.setSelectedIndex(0);
+        panel_lower_left.fondTypeBox.setSelectedIndex(0);
+    }
 }
 
 class ReaderCategory {

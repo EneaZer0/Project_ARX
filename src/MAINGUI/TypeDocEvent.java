@@ -22,12 +22,6 @@ public class TypeDocEvent extends EventObject {
         super(source);
     }
 
-    public TypeDocEvent(Object source, String path) {
-        super(source);
-
-        this.path = path;
-    }
-
     public TypeDocEvent(Object source, String path, String fond, String typeFond) {
         super(source);
 

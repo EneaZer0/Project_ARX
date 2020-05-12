@@ -25,4 +25,8 @@ public class Panel_Console extends JPanel {
     public void appendText(String text) {
         console.append(text);
     }
+
+    public void cleanText() {
+        console.setText(null);
+    }
 }

@@ -27,4 +27,8 @@ public class Generic_Process_DOC {
 
     public void print_all_info(ArrayList<Double> numbersArray){
     }
+
+    public String getString_all_info() {
+        return null;
+    }
 }

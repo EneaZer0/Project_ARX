@@ -110,4 +110,55 @@ public class BTC_TREA_CAS_DOC extends Generic_Process_DOC {
         System.out.println("Net IRR: " + NetIRR);
     }
 
+    @Override
+    public String getString_all_info() {
+
+        return "\n" +
+
+       "\nInvestment Commitment: " + Investment_Commitment +
+        "\nTotal Fund Size: " + Total_Fund_Size +
+
+        "\n" +
+
+        "\nCapital Call - Quarter: " + CC_Quarter +
+        "\nCapital Call - YTD: " + CC_YTD +
+        "\nCapital Call - Since Inception: " + CC_SI +
+
+        "\n" +
+
+        "\nCapital Call (Inside Investment) - Quarter: " + CC_Inside_Investment_Quarter +
+        "\nCapital Call (Inside Investment) - YTD: " + CC_Inside_Investment_YTD +
+        "\nCapital Call (Inside Investment) - Since Inception: " + CC_Inside_Investment_SI +
+
+        "\n" +
+
+        "\nGross Distribution - Quarter: " + G_Distribution_Quarter +
+        "\nGross Distribution - YTD: " + G_Distribution_YTD +
+        "\nGross Distribution - Since Inception: " + G_Distribution_SI +
+
+        "\n" +
+
+        "\nGross Distribution (Interest) - Quarter: " + G_Distribution_Interest_Quarter +
+        "\nGross Distribution (Interest) - YTD: " + G_Distribution_Interest_YTD +
+        "\nGross Distribution (Interest) - Since Inception: " + G_Distribution_Interest_SI +
+
+        "\n" + "\nNet Distribution - Quarter: " + N_Distribution_Quarter +
+        "\nNet Distribution - YTD: " + N_Distribution_YTD +
+        "\nNet Distribution - Since Inception: " + N_Distribution_SI +
+
+        "\n" +
+
+        "\nNet Distribution (Recallable) - Quarter: " + N_Distribution_ReCALL_Quarter +
+        "\nNet Distribution (Recallable) - YTD: " + N_Distribution_ReCALL_YTD +
+        "\nNet Distribution (Recallable) - Since Inception: " + N_Distribution_ReCALL_SI +
+
+        "\n" +
+
+        "\nUnfunded Commitment: " + Unfunded_Commitment_SI +
+
+        "\n" +
+
+        "\nNet Invested Capital Multiple: " + NetInvestedCapitalMultiple +
+        "\nNet IRR: " + NetIRR;
+    }
 }
