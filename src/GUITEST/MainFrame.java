@@ -1,4 +1,4 @@
-package GUI;
+package GUITEST;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,10 +18,15 @@ public class MainFrame extends JFrame {
         textPanel = new TextPanel();
         formPanel = new FormPanel();
 
-        toolbar.setStringListener(new StringListener() {
-            @Override
-            public void textEmitted(String text) {
-                textPanel.appendText(text);
+        toolbar.setStringListener(text -> textPanel.appendText(text));
+
+        formPanel.setFormListener (new FormListener() {
+            public void formEventOccurred(FromEvent e) {
+                String name = e.getName();
+                String occupation = e.getOccupation();
+                int ageCat = e.getAgeCategory();
+                String employmentCat = e.getEmploymentCat();
+                textPanel.appendText(name + ": " + occupation + ": " + ageCat + ", " + employmentCat + "\n");
             }
         });
 

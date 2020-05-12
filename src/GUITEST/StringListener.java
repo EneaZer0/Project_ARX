@@ -1,4 +1,4 @@
-package GUI;
+package GUITEST;
 
 public interface StringListener {
 

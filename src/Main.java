@@ -1,4 +1,5 @@
-import GUI.GUI;
+import GUITEST.GUI;
+import MAINGUI.MainGUI;
 import READERS.AnaCap.AnaCap_CCN_DOC;
 import READERS.AnaCap.AnaCap_Paths;
 import READERS.BTC_TREA.BTC_Paths;
@@ -18,9 +19,10 @@ public class Main {
     public static void main(String[] args) {
 
         GUI gui = new GUI();
+        MainGUI mainGUI = new MainGUI();
 
-        // BTC_print_all_info();
-        // AnaCap_print_all_info();
+        BTC_print_all_info();
+        AnaCap_print_all_info();
         Khronos_print_all_info();
 
     }
