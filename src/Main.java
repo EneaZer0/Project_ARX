@@ -18,12 +18,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        GUI gui = new GUI();
+        // GUI gui = new GUI();
         MainGUI mainGUI = new MainGUI();
 
-        BTC_print_all_info();
-        AnaCap_print_all_info();
-        Khronos_print_all_info();
+        // BTC_print_all_info();
+        // AnaCap_print_all_info();
+        // Khronos_print_all_info();
 
     }
 

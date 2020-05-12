@@ -1,9 +1,10 @@
 package MAINGUI;
 
+import MAINGUI.PANEL_CONSOLE.Panel_Console;
+import MAINGUI.PANEL_LOWER.Panel_Lower;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
 
@@ -11,20 +12,31 @@ public class MainFrame extends JFrame {
     /**
      * JTextArea used to display the information that has been extracted from the file, also used as a console to output information
      */
-    private ConsolePanel consolePanel;
+    private Panel_Console consolePanel;
 
 
-    private LowerPanel lowerPanel;
+    private Panel_Lower lowerPanel;
 
     public MainFrame() {
         super("Alternative Ratings");
 
-        consolePanel = new ConsolePanel();
+        consolePanel = new Panel_Console();
 
 
         setLayout(new BorderLayout());
 
-        lowerPanel = new LowerPanel();
+        lowerPanel = new Panel_Lower();
+        lowerPanel.setTypeDocEventListener(new TypeDocEventListener() {
+            @Override
+            public void typeDocEventOccurred(TypeDocEvent event) {
+                String path = event.getPath();
+                String fond = event.getFond();
+                String fondType = event.getTypeFond();
+                consolePanel.appendText("Path: " + path + "\nFond: " + fond + "\nType of Document: " + fondType);
+            }
+        });
+
+
 
         addFunction();
 
