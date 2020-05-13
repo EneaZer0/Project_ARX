@@ -18,7 +18,8 @@ public class Generic_Process_DOC {
         Generic_DOC_DOCX_Reader read_BTC_TREA_CAS_DOC = new Generic_DOC_DOCX_Reader(path);
         numbersArray = read_BTC_TREA_CAS_DOC.getNumberArray();
         value_Assigner(numbersArray);
-        print_all_info(numbersArray);
+
+        // print_all_info(numbersArray);
 
     }
 

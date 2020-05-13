@@ -78,6 +78,7 @@ public class Panel_Lower extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (cleanTerminalListener != null) {
                     cleanTerminalListener.cleanTerminalButtonPressed();
+                    clearTextInputs();
                 }
             }
         });
@@ -140,8 +141,8 @@ public class Panel_Lower extends JPanel {
         this.typeDocEventListener = listener;
     }
 
-    public void setCleanTerminalButtonListner(CleanTerminalListener listner) {
-        this.cleanTerminalListener = listner;
+    public void setCleanTerminalButtonListener(CleanTerminalListener listener) {
+        this.cleanTerminalListener = listener;
     }
 
     private void clearTextInputs(){

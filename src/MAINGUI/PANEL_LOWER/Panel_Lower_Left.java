@@ -153,8 +153,4 @@ public class Panel_Lower_Left extends JPanel {
         add((Component) element, gridBagConstraints);
 
     }
-
-    public String combogetter( JComboBox comboBox) {
-        return (String) comboBox.getSelectedItem();
-    }
 }
