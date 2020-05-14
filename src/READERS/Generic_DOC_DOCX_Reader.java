@@ -90,13 +90,13 @@ public class Generic_DOC_DOCX_Reader {
         numberArray = new ArrayList<>();
         numberArray = extractor.getNumberArray();
 
-        /* TODO WHEN WORKING THIS PRINTS NUMBERS AND ALL THE TEXT (RECOMMENDABLE TO UN COMMENT IT TO WORK)
+        /* TODO WHEN WORKING THIS PRINTS NUMBERS AND ALL THE TEXT (RECOMMENDABLE TO UN COMMENT IT TO WORK) */
         System.out.println(dataArray.toString());
         System.out.println("\n");
         System.out.println(numberArray.toString());
         System.out.println("\n");
         System.out.println("\n");
-        */
+
         System.out.println("nº: " + numberArray.size());
 
     }

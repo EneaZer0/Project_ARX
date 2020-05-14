@@ -22,7 +22,7 @@ public class Main {
         MainGUI mainGUI = new MainGUI();
 
         // BTC_print_all_info();
-         AnaCap_print_all_info();
+        // AnaCap_print_all_info();
         // Khronos_print_all_info();
 
     }

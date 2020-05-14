@@ -1,5 +1,6 @@
 package READERS.AnaCap;
 
+import MAINGUI.CONSTANTS.Strings_eng;
 import READERS.Generic_Process_DOC;
 
 import java.nio.file.Path;
@@ -13,10 +14,12 @@ public class AnaCap_CCN_DOC extends Generic_Process_DOC {
     private Double RecallableDistribuitions_Quarter, RecallableDistribuitions_YTD, RecallableDistribuitions_SI;
     private Double RemainingCapitalCommitment_End_Quarter, RemainingCapitalCommitment_End_YTD, RemainingCapitalCommitment_End_SI;
     private Double NetAssetsAttributabletoPartner_Quarter, NetAssetsAttributabletoPartner_YTD, NetAssetsAttributabletoPartner_SI;
+    Strings_eng string;
 
     public AnaCap_CCN_DOC(Path path){
         super();
         generalProcess(path);
+        string = new Strings_eng();
     }
 
 
@@ -72,7 +75,7 @@ public class AnaCap_CCN_DOC extends Generic_Process_DOC {
 
         } else {
 
-            System.err.println("ERROR: The amount of numbers does not coincide with the supposed model. Revise the document. Probably a new model must be made.");
+            throw new IllegalArgumentException("ERROR: The amount of numbers does not coincide with the supposed model. Revise the document. Probably a new model must be made.");
 
         }
 
@@ -119,5 +122,97 @@ public class AnaCap_CCN_DOC extends Generic_Process_DOC {
 
         System.out.println("\n");
 
+    }
+
+    @Override
+    public String getString_all_info() {
+
+
+
+        String line = "\n";
+        String AggregateCapitalCommitmentString = "Aggregate Capital Commitment: " + AggregateCapitalCommitment;
+        String RemainingCapitalCommitment_Beginning_Quarter_String = "Remaining Capital Commitment (Beginning) - Quarter: " + RemainingCapitalCommitment_Beginning_Quarter;
+        String RemainingCapitalCommitment_Beginning_YTD_String = "Remaining Capital Commitment (Beginning) - YTD: " + RemainingCapitalCommitment_Beginning_YTD;
+        String RemainingCapitalCommitment_Beginning_SI_String = "Remaining Capital Commitment (Beginning) - Since Inception: " + RemainingCapitalCommitment_Beginning_SI;
+        String CapitalContributions_Quarter_String = "Capital Contributions - Quarter: " + CapitalContributions_Quarter;
+        String CapitalContributions_YTD_String = "Capital Contributions - YTD: " + CapitalContributions_YTD;
+        String CapitalContributions_SI_Sting =  "Capital Contributions - Since Inception: " + CapitalContributions_SI;
+        String RecallableDistribuitions_Quarter_String = "Recallable Distributions - Quarter: " + RecallableDistribuitions_Quarter;
+        String RecallableDistribuitions_YTD_String =  "Recallable Distributions - YTD: " + RecallableDistribuitions_YTD;
+        String RecallableDistribuitions_SI_String = "Recallable Distributions - Since Inception: " + RecallableDistribuitions_SI;
+        String RemainingCapitalCommitment_End_Quarter_String =  "Remaining Capital Commitment at the end of the period - Quarter: " + RemainingCapitalCommitment_End_Quarter;
+        String RemainingCapitalCommitment_End_YTD_String = "Remaining Capital Commitment at the end of the period - YTD: " + RemainingCapitalCommitment_End_YTD;
+        String RemainingCapitalCommitment_End_SI_String = "Remaining Capital Commitment at the end of the period - Since Inception: " + RemainingCapitalCommitment_End_SI;
+        String NetAssetsAttributabletoPartner_Quarter_String = "Net assets attributable to the Partner - Quarter: " + NetAssetsAttributabletoPartner_Quarter;
+        String NetAssetsAttributabletoPartner_YTD_String = "Net assets attributable to the Partner - YTD: " + NetAssetsAttributabletoPartner_YTD;
+        String NetAssetsAttributabletoPartner_SI_String = "Net assets attributable to the Partner - Since Inception: " + NetAssetsAttributabletoPartner_SI;
+
+
+        String TOTAL_OUTPUT =
+
+                        string.tab +  AggregateCapitalCommitmentString + line +
+
+                        line +
+
+                        string.tab +  RemainingCapitalCommitment_Beginning_Quarter_String + line;
+
+
+        if (RemainingCapitalCommitment_Beginning_YTD != null) {
+            TOTAL_OUTPUT = TOTAL_OUTPUT + string.tab +  RemainingCapitalCommitment_Beginning_YTD_String + line;
+        }
+
+        TOTAL_OUTPUT =
+                TOTAL_OUTPUT +
+                        string.tab +  RemainingCapitalCommitment_Beginning_SI_String + line +
+
+                        line +
+
+                        string.tab +  CapitalContributions_Quarter_String + line;
+
+        if (CapitalContributions_YTD != null) {
+            TOTAL_OUTPUT = TOTAL_OUTPUT + string.tab +  CapitalContributions_YTD_String + line;
+        }
+
+        TOTAL_OUTPUT =
+                TOTAL_OUTPUT + string.tab +  CapitalContributions_SI_Sting + line +
+
+                        line +
+
+                        string.tab +  RecallableDistribuitions_Quarter_String + line;
+
+
+        if (RecallableDistribuitions_YTD != null) {
+            TOTAL_OUTPUT = TOTAL_OUTPUT + string.tab +  RecallableDistribuitions_YTD_String + line;
+        }
+
+        TOTAL_OUTPUT =
+                TOTAL_OUTPUT +
+                        string.tab +  RecallableDistribuitions_SI_String + line +
+
+                        line +
+
+                        string.tab +  RemainingCapitalCommitment_End_Quarter_String + line;
+
+
+        if (RemainingCapitalCommitment_End_YTD != null) {
+            TOTAL_OUTPUT = TOTAL_OUTPUT + string.tab +  RemainingCapitalCommitment_End_YTD_String + line;
+        }
+
+        TOTAL_OUTPUT =
+                TOTAL_OUTPUT +
+                        string.tab +  RemainingCapitalCommitment_End_SI_String + line +
+
+                        line +
+
+                        string.tab +  NetAssetsAttributabletoPartner_Quarter_String + line;
+
+        if (NetAssetsAttributabletoPartner_YTD != null) {
+            TOTAL_OUTPUT = TOTAL_OUTPUT + string.tab +  NetAssetsAttributabletoPartner_YTD_String + line;
+        }
+
+        TOTAL_OUTPUT =
+                TOTAL_OUTPUT + string.tab +  NetAssetsAttributabletoPartner_SI_String + line;
+
+        return TOTAL_OUTPUT;
     }
 }

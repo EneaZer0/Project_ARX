@@ -1,4 +1,4 @@
-package MAINGUI.LanguagePack;
+package MAINGUI.CONSTANTS;
 
 public class Commands {
 

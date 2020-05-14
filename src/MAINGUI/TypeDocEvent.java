@@ -14,7 +14,11 @@ public class TypeDocEvent extends EventObject {
      */
 
     private String path;
+
+    private int fondId;
     private String fond;
+
+    private int typeFondId;
     private String typeFond;
 
 
@@ -22,12 +26,16 @@ public class TypeDocEvent extends EventObject {
         super(source);
     }
 
-    public TypeDocEvent(Object source, String path, String fond, String typeFond) {
+    public TypeDocEvent(Object source, String path, String fond, String typeFond, int fondId, int typeFondId) {
         super(source);
 
         this.path = path;
+
         this.fond = fond;
+        this.fondId = fondId;
+
         this.typeFond = typeFond;
+        this.typeFondId = typeFondId;
 
     }
 
@@ -42,4 +50,11 @@ public class TypeDocEvent extends EventObject {
     public String getTypeFond() {
         return typeFond;
     }
+
+    public int getFondId() {return fondId;}
+
+    public int getTypeFondId() {
+        return typeFondId;
+    }
+
 }

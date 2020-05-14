@@ -55,13 +55,15 @@ public class Panel_Lower extends JPanel {
 
                 String path = panel_lower_left.pathInput.getText();
                 String fond = panel_lower_left.fondBox.getSelectedItem().toString();
+                int fondId = panel_lower_left.fondBox.getSelectedIndex();
                 String fondType = panel_lower_left.fondTypeBox.getSelectedItem().toString();
+                int fondTypeId = panel_lower_left.fondTypeBox.getSelectedIndex();
 
                 String information = "Path: " + path + ", Fond: " + fond + ", Type of Document: " + fondType;
 
                 System.out.println(information);
 
-                TypeDocEvent event = new TypeDocEvent(this, path, fond, fondType);
+                TypeDocEvent event = new TypeDocEvent(this, path, fond, fondType,fondId, fondTypeId);
 
                 if (typeDocEventListener != null) {
                     typeDocEventListener.typeDocEventOccurred(event);

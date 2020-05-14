@@ -26,9 +26,9 @@ public class Panel_Console extends JPanel {
     public Panel_Console() {
 
         console = new JTextPane();
-        //console.setEditable(false);
+        console.setEditable(false);
 
-        pressEnter();
+
 
         setLayout(new BorderLayout());
 
@@ -37,44 +37,7 @@ public class Panel_Console extends JPanel {
         add(new JScrollPane(console), BorderLayout.CENTER);
     }
 
-    private void pressEnter() {
-        console.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
 
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    String content = null;
-                    try {
-                        content = console.getDocument().getText(0, console.getDocument().getLength());
-                        if (!content.isBlank()) {
-                            String[] data = content.split("\n");
-                            //System.out.println(Arrays.toString(data));
-                            content = data[data.length-1];
-                        }
-
-
-                    } catch (BadLocationException ex) {
-                        ex.printStackTrace();
-                    }
-                    //System.out.println(content);
-
-                    if (stringListenerMain != null) {
-                        stringListenerMain.textEmitted(content);
-                    }
-
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        });
-    }
 
     private void borderSettings() {
         Border outside = BorderFactory.createTitledBorder("");
@@ -88,6 +51,7 @@ public class Panel_Console extends JPanel {
     }
 
     public void appendToPane(JTextPane tp, String msg, Color c) {
+        console.setEditable(true);
         StyleContext sc = StyleContext.getDefaultStyleContext();
         AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
 
@@ -98,14 +62,13 @@ public class Panel_Console extends JPanel {
         tp.setCaretPosition(len);
         tp.setCharacterAttributes(aset, false);
         tp.replaceSelection(msg);
+        console.setEditable(false);
     }
 
     public void cleanText() {
         console.setText(null);
     }
 
-    public void setStringListenerMain (StringListenerMain listener) {
-        this.stringListenerMain = listener;
-    }
+
 
 }

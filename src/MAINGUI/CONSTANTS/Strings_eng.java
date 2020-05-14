@@ -1,4 +1,4 @@
-package MAINGUI.LanguagePack;
+package MAINGUI.CONSTANTS;
 
 public class Strings_eng {
 
@@ -40,6 +40,8 @@ public class Strings_eng {
 
     public String expected_format = " A .doc file is expected.";
 
+
+    /////////// LOGO ////////////
 
     public String coolAR = "\n" +
                     ntab + " ▄▄▄      ██▓ ▄▄▄█████▓█████ ██▀███  ███▄    █ ▄▄▄    ▄▄▄█████▓██▓██▒   █▓█████     ██▀███  ▄▄▄    ▄▄▄█████▓██▓███▄    █  ▄████  ██████ \n" +

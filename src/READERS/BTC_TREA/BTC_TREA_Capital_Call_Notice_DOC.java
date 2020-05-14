@@ -22,8 +22,16 @@ public class BTC_TREA_Capital_Call_Notice_DOC extends Generic_Process_DOC {
 
     @Override
     public void value_Assigner(ArrayList<Double> numbersArray) {
+        if (numbersArray.size() == 28) {
 
-        BTC_TREA_Capital_Call = numbersArray.get(10);
+            BTC_TREA_Capital_Call = numbersArray.get(10);
+
+        } else {
+
+            throw new IllegalArgumentException("ERROR: The amount of numbers does not coincide with the supposed model. Revise the document. Probably a new model must be made.");
+
+        }
+
     }
 
     @Override
