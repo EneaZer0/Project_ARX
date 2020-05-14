@@ -99,6 +99,7 @@ public class Generic_DOC_DOCX_Reader {
 
         System.out.println("nº: " + numberArray.size());
 
+
     }
 
     public ArrayList<String> getDataArray() {

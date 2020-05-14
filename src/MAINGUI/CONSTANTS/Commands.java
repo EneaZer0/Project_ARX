@@ -2,7 +2,7 @@ package MAINGUI.CONSTANTS;
 
 public class Commands {
 
-    private static Strings_eng strings_eng = new Strings_eng();
+    private static String_Constants strings_eng = new String_Constants(Commands.ENGLISH);
 
     public static final String HELP = "help";
 
@@ -18,4 +18,9 @@ public class Commands {
 
     public static final String AR_GAME = "ar_game";
 
+    public static final String LANGUAGE = "language";
+
+    public static final String ENGLISH = "english";
+
+    public static final String SPANISH = "spanish";
 }

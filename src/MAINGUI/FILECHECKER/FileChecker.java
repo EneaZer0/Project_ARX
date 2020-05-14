@@ -1,27 +1,21 @@
 package MAINGUI.FILECHECKER;
 
 import MAINGUI.CONSTANTS.FOND_ID;
-import MAINGUI.CONSTANTS.Strings_eng;
+import MAINGUI.CONSTANTS.String_Constants;
 import MAINGUI.PANEL_CONSOLE.Panel_Console;
 import MAINGUI.StringListenerMain;
 import MAINGUI.TypeDocEvent;
-import READERS.AnaCap.AnaCap_CCN_DOC;
-import READERS.BTC_TREA.BTC_TREA_CAS_DOC;
-import READERS.BTC_TREA.BTC_TREA_Capital_Call_Notice_DOC;
-import READERS.Khronos.Khronos_Capital_Call;
-import READERS.Khronos.Khronos_Statement;
 
 import java.awt.*;
 import java.io.File;
 import java.nio.file.Path;
-import java.rmi.ServerError;
 import java.util.ArrayList;
 
 public class FileChecker {
 
     private Panel_Console consolePanel;
     private File file;
-    private Strings_eng string;
+    private String_Constants string;
     private Path path;
 
     private TypeDocEvent event;
@@ -33,7 +27,7 @@ public class FileChecker {
 
 
 
-    public FileChecker(Panel_Console consolePanel, File file, Path path, Strings_eng string, TypeDocEvent event) {
+    public FileChecker(Panel_Console consolePanel, File file, Path path, String_Constants string, TypeDocEvent event) {
 
         this.consolePanel = consolePanel;
         this.file = file;

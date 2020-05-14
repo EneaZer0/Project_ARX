@@ -1,5 +1,6 @@
 package READERS.Khronos;
 
+import MAINGUI.CONSTANTS.String_Constants;
 import READERS.Generic_Process_DOC;
 
 import java.nio.file.Path;
@@ -15,37 +16,48 @@ public class Khronos_Statement extends Generic_Process_DOC {
     private Double NetIncome_Quarter, NetIncome_SI;
     private Double EndingBalance_Quarter, EndingBalance_SI;
 
+    private String_Constants string;
 
-    public Khronos_Statement(Path path) {
+
+    public Khronos_Statement(Path path, String_Constants string) {
         super();
         generalProcess(path);
-
+        this.string = string;
     }
 
     @Override
     public void value_Assigner(ArrayList<Double> numbersArray) {
 
-        LP_Commitment = numbersArray.get(6);
-        Unfunded_LP_Commitment = numbersArray.get(7);
-        LP_ownership_percentage_of_total_commitment = numbersArray.get(9);
+        if (numbersArray.size() == 50) {
 
-        BeginningBalance_Quarter = numbersArray.get(11);
-        BeginningBalance_SI = numbersArray.get(15);
+            LP_Commitment = numbersArray.get(6);
+            Unfunded_LP_Commitment = numbersArray.get(7);
+            LP_ownership_percentage_of_total_commitment = numbersArray.get(9);
 
-        CapitalCall_Quarter = numbersArray.get(16);
-        CapitalCall_SI = numbersArray.get(18);
+            BeginningBalance_Quarter = numbersArray.get(11);
+            BeginningBalance_SI = numbersArray.get(15);
 
-        Distributions_Quarter = numbersArray.get(19);
-        Distributions_SI = numbersArray.get(21);
+            CapitalCall_Quarter = numbersArray.get(16);
+            CapitalCall_SI = numbersArray.get(18);
 
-        Transfers_Quarter = numbersArray.get(22);
-        Transfers_SI = numbersArray.get(24);
+            Distributions_Quarter = numbersArray.get(19);
+            Distributions_SI = numbersArray.get(21);
 
-        NetIncome_Quarter = numbersArray.get(25);
-        NetIncome_SI = numbersArray.get(27);
+            Transfers_Quarter = numbersArray.get(22);
+            Transfers_SI = numbersArray.get(24);
 
-        EndingBalance_Quarter = numbersArray.get(29);
-        EndingBalance_SI = numbersArray.get(33);
+            NetIncome_Quarter = numbersArray.get(25);
+            NetIncome_SI = numbersArray.get(27);
+
+            EndingBalance_Quarter = numbersArray.get(29);
+            EndingBalance_SI = numbersArray.get(33);
+
+        } else {
+
+            throw new IllegalArgumentException("ERROR: The amount of numbers does not coincide with the supposed model. Revise the document. Probably a new model must be made.");
+
+        }
+
 
     }
 
@@ -90,6 +102,48 @@ public class Khronos_Statement extends Generic_Process_DOC {
         System.out.println("End Balance - Since Inception: " + EndingBalance_SI);
 
         System.out.println("\n");
+
+    }
+
+    @Override
+    public String getString_all_info() {
+        return  string.ntab +
+
+        string.ntab + "LP Commitment: " + LP_Commitment +
+        string.ntab + "Unfunded LP Commitment: " + Unfunded_LP_Commitment +
+        string.ntab + "LP Ownership Percentage of Total Commitment: " + LP_ownership_percentage_of_total_commitment +
+
+        string.ntab +
+
+        string.ntab + "Beginning Balance - Quarter: " + BeginningBalance_Quarter +
+        string.ntab + "Beginning Balance - Since Inception: " + BeginningBalance_SI +
+
+        string.ntab +
+
+        string.ntab + "Capital Call - Quarter: " + CapitalCall_Quarter +
+        string.ntab + "Capital Call - Since Inception: " + CapitalCall_SI +
+
+        string.ntab +
+
+        string.ntab + "Distribution - Quarter: " + Distributions_Quarter +
+        string.ntab + "Distribution - Since Inception: " + Distributions_SI +
+
+        string.ntab +
+
+        string.ntab + "Transfers - Quarter: " + Transfers_Quarter +
+        string.ntab + "Transfers - Since Inception: " + Transfers_SI +
+
+        string.ntab +
+
+        string.ntab + "Net Income - Quarter: " + NetIncome_Quarter +
+        string.ntab + "Net Income - Since Inception: " + NetIncome_SI +
+
+        string.ntab +
+
+        string.ntab + "End Balance - Quarter: " + EndingBalance_Quarter +
+        string.ntab + "End Balance - Since Inception: " + EndingBalance_SI +
+
+        string.ntab ;
 
     }
 }

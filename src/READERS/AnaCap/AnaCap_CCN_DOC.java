@@ -1,6 +1,6 @@
 package READERS.AnaCap;
 
-import MAINGUI.CONSTANTS.Strings_eng;
+import MAINGUI.CONSTANTS.String_Constants;
 import READERS.Generic_Process_DOC;
 
 import java.nio.file.Path;
@@ -14,12 +14,12 @@ public class AnaCap_CCN_DOC extends Generic_Process_DOC {
     private Double RecallableDistribuitions_Quarter, RecallableDistribuitions_YTD, RecallableDistribuitions_SI;
     private Double RemainingCapitalCommitment_End_Quarter, RemainingCapitalCommitment_End_YTD, RemainingCapitalCommitment_End_SI;
     private Double NetAssetsAttributabletoPartner_Quarter, NetAssetsAttributabletoPartner_YTD, NetAssetsAttributabletoPartner_SI;
-    Strings_eng string;
+    private String_Constants string;
 
-    public AnaCap_CCN_DOC(Path path){
+    public AnaCap_CCN_DOC(Path path, String_Constants string){
         super();
         generalProcess(path);
-        string = new Strings_eng();
+        this.string = string;
     }
 
 

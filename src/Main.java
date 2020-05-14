@@ -26,7 +26,7 @@ public class Main {
         // Khronos_print_all_info();
 
     }
-
+    /*
     private static void BTC_print_all_info() {
 
         BTC_Paths paths_document = new BTC_Paths();
@@ -65,5 +65,7 @@ public class Main {
 
 
     }
+
+     */
 
 }

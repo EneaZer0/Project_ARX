@@ -1,5 +1,6 @@
 package READERS.BTC_TREA;
 
+import MAINGUI.CONSTANTS.String_Constants;
 import READERS.Generic_Process_DOC;
 
 import java.nio.file.Path;
@@ -18,9 +19,12 @@ public class BTC_TREA_CAS_DOC extends Generic_Process_DOC {
     private Double NetInvestedCapitalMultiple;
     private Double NetIRR;
 
-    public BTC_TREA_CAS_DOC(Path path){
+    private String_Constants string;
+
+    public BTC_TREA_CAS_DOC(Path path, String_Constants string){
         super();
         generalProcess(path);
+        this.string = string;
     }
 
     @Override
@@ -30,30 +34,38 @@ public class BTC_TREA_CAS_DOC extends Generic_Process_DOC {
 
     @Override
     public void value_Assigner(ArrayList<Double> numbersArray) {
+        if (numbersArray.size() == 65 ) {
+            Investment_Commitment = numbersArray.get(2);
+            Total_Fund_Size = numbersArray.get(3);
+            CC_Quarter = numbersArray.get(6);
+            CC_YTD = numbersArray.get(7);
+            CC_SI = numbersArray.get(8);
+            CC_Inside_Investment_Quarter = numbersArray.get(9);
+            CC_Inside_Investment_YTD = numbersArray.get(10);
+            CC_Inside_Investment_SI = numbersArray.get(11);
+            G_Distribution_Quarter = numbersArray.get(12);
+            G_Distribution_YTD = numbersArray.get(13);
+            G_Distribution_SI = numbersArray.get(14);
+            G_Distribution_Interest_Quarter = numbersArray.get(21);
+            G_Distribution_Interest_YTD = numbersArray.get(22);
+            G_Distribution_Interest_SI = numbersArray.get(23);
+            N_Distribution_Quarter = numbersArray.get(30);
+            N_Distribution_YTD = numbersArray.get(31);
+            N_Distribution_SI = numbersArray.get(32);
+            N_Distribution_ReCALL_Quarter = numbersArray.get(33);
+            N_Distribution_ReCALL_YTD = numbersArray.get(34);
+            N_Distribution_ReCALL_SI = numbersArray.get(35);
+            Unfunded_Commitment_SI = numbersArray.get(36);
+            NetInvestedCapitalMultiple = numbersArray.get(62);
+            NetIRR = numbersArray.get(64);
 
-        Investment_Commitment = numbersArray.get(2);
-        Total_Fund_Size = numbersArray.get(3);
-        CC_Quarter = numbersArray.get(6);
-        CC_YTD = numbersArray.get(7);
-        CC_SI = numbersArray.get(8);
-        CC_Inside_Investment_Quarter = numbersArray.get(9);
-        CC_Inside_Investment_YTD = numbersArray.get(10);
-        CC_Inside_Investment_SI = numbersArray.get(11);
-        G_Distribution_Quarter = numbersArray.get(12);
-        G_Distribution_YTD = numbersArray.get(13);
-        G_Distribution_SI = numbersArray.get(14);
-        G_Distribution_Interest_Quarter = numbersArray.get(21);
-        G_Distribution_Interest_YTD = numbersArray.get(22);
-        G_Distribution_Interest_SI = numbersArray.get(23);
-        N_Distribution_Quarter = numbersArray.get(30);
-        N_Distribution_YTD = numbersArray.get(31);
-        N_Distribution_SI = numbersArray.get(32);
-        N_Distribution_ReCALL_Quarter = numbersArray.get(33);
-        N_Distribution_ReCALL_YTD = numbersArray.get(34);
-        N_Distribution_ReCALL_SI = numbersArray.get(35);
-        Unfunded_Commitment_SI = numbersArray.get(36);
-        NetInvestedCapitalMultiple = numbersArray.get(62);
-        NetIRR = numbersArray.get(64);
+        } else {
+
+            throw new IllegalArgumentException();
+
+        }
+
+
     }
 
     @Override
@@ -115,50 +127,50 @@ public class BTC_TREA_CAS_DOC extends Generic_Process_DOC {
 
         return "\n" +
 
-       "\nInvestment Commitment: " + Investment_Commitment +
-        "\nTotal Fund Size: " + Total_Fund_Size +
+        string.ntab +  "Investment Commitment: " + Investment_Commitment +
+        string.ntab +  "Total Fund Size: " + Total_Fund_Size +
 
-        "\n" +
+        string.ntab +
 
-        "\nCapital Call - Quarter: " + CC_Quarter +
-        "\nCapital Call - YTD: " + CC_YTD +
-        "\nCapital Call - Since Inception: " + CC_SI +
+        string.ntab +  "Capital Call - Quarter: " + CC_Quarter +
+        string.ntab +  "Capital Call - YTD: " + CC_YTD +
+        string.ntab +  "Capital Call - Since Inception: " + CC_SI +
 
-        "\n" +
+        string.ntab +
 
-        "\nCapital Call (Inside Investment) - Quarter: " + CC_Inside_Investment_Quarter +
-        "\nCapital Call (Inside Investment) - YTD: " + CC_Inside_Investment_YTD +
-        "\nCapital Call (Inside Investment) - Since Inception: " + CC_Inside_Investment_SI +
+        string.ntab +  "Capital Call (Inside Investment) - Quarter: " + CC_Inside_Investment_Quarter +
+        string.ntab + "Capital Call (Inside Investment) - YTD: " + CC_Inside_Investment_YTD +
+        string.ntab + "Capital Call (Inside Investment) - Since Inception: " + CC_Inside_Investment_SI +
 
-        "\n" +
+        string.ntab +
 
-        "\nGross Distribution - Quarter: " + G_Distribution_Quarter +
-        "\nGross Distribution - YTD: " + G_Distribution_YTD +
-        "\nGross Distribution - Since Inception: " + G_Distribution_SI +
+        string.ntab + "Gross Distribution - Quarter: " + G_Distribution_Quarter +
+        string.ntab + "Gross Distribution - YTD: " + G_Distribution_YTD +
+        string.ntab + "Gross Distribution - Since Inception: " + G_Distribution_SI +
 
-        "\n" +
+        string.ntab +
 
-        "\nGross Distribution (Interest) - Quarter: " + G_Distribution_Interest_Quarter +
-        "\nGross Distribution (Interest) - YTD: " + G_Distribution_Interest_YTD +
-        "\nGross Distribution (Interest) - Since Inception: " + G_Distribution_Interest_SI +
+        string.ntab +  "Gross Distribution (Interest) - Quarter: " + G_Distribution_Interest_Quarter +
+        string.ntab +  "Gross Distribution (Interest) - YTD: " + G_Distribution_Interest_YTD +
+        string.ntab +  "Gross Distribution (Interest) - Since Inception: " + G_Distribution_Interest_SI +
 
-        "\n" + "\nNet Distribution - Quarter: " + N_Distribution_Quarter +
-        "\nNet Distribution - YTD: " + N_Distribution_YTD +
-        "\nNet Distribution - Since Inception: " + N_Distribution_SI +
+        string.ntab +  "" + string.ntab +  "Net Distribution - Quarter: " + N_Distribution_Quarter +
+        string.ntab +  "Net Distribution - YTD: " + N_Distribution_YTD +
+        string.ntab +  "Net Distribution - Since Inception: " + N_Distribution_SI +
 
-        "\n" +
+        string.ntab +
 
-        "\nNet Distribution (Recallable) - Quarter: " + N_Distribution_ReCALL_Quarter +
-        "\nNet Distribution (Recallable) - YTD: " + N_Distribution_ReCALL_YTD +
-        "\nNet Distribution (Recallable) - Since Inception: " + N_Distribution_ReCALL_SI +
+        string.ntab +  "Net Distribution (Recallable) - Quarter: " + N_Distribution_ReCALL_Quarter +
+        string.ntab +   "Net Distribution (Recallable) - YTD: " + N_Distribution_ReCALL_YTD +
+        string.ntab +  "Net Distribution (Recallable) - Since Inception: " + N_Distribution_ReCALL_SI +
 
-        "\n" +
+        string.ntab +
 
-        "\nUnfunded Commitment: " + Unfunded_Commitment_SI +
+        string.ntab +  "Unfunded Commitment: " + Unfunded_Commitment_SI +
 
-        "\n" +
+        string.ntab +
 
-        "\nNet Invested Capital Multiple: " + NetInvestedCapitalMultiple +
-        "\nNet IRR: " + NetIRR;
+        string.ntab + "Net Invested Capital Multiple: " + NetInvestedCapitalMultiple +
+        string.ntab + "Net IRR: " + NetIRR;
     }
 }

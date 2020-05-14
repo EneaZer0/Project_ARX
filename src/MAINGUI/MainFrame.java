@@ -3,7 +3,7 @@ package MAINGUI;
 import MAINGUI.CONSTANTS.FOND_ID;
 import MAINGUI.FILECHECKER.FileChecker;
 import MAINGUI.CONSTANTS.Commands;
-import MAINGUI.CONSTANTS.Strings_eng;
+import MAINGUI.CONSTANTS.String_Constants;
 import MAINGUI.PANEL_CONSOLE.Panel_Console;
 import MAINGUI.PANEL_CONSOLE.Panel_Console_Input;
 import MAINGUI.PANEL_LOWER.Panel_Lower;
@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
     /**
      * creates the variable that contains all the string information of the program
      */
-    private Strings_eng string;
+    private String_Constants string;
     /**
      * Creates the JPanel placed in the bottom of the GUI
      */
@@ -56,7 +56,7 @@ public class MainFrame extends JFrame {
      */
     public MainFrame() {
         super("Alternative Ratings");
-        string = new Strings_eng();
+        string = new String_Constants(Commands.ENGLISH);
 
         consolePanel = new Panel_Console();
 
@@ -191,7 +191,7 @@ public class MainFrame extends JFrame {
 
         switch (text) {
             case Commands.HELP:
-                consolePanel.appendToPane(consolePanel.console, "\n" + string.ntab + Commands.HELP_OUTPUT, Color.BLUE);
+                consolePanel.appendToPane(consolePanel.console,  string.ntab + Commands.HELP_OUTPUT, Color.BLUE);
                 newBlackLine();
 
                 break;
@@ -209,11 +209,26 @@ public class MainFrame extends JFrame {
                 break;
 
             case Commands.HELP + " " + Commands.CLEAR:
-                consolePanel.appendToPane(consolePanel.console, "\n" + string.ntab + Commands.HELP_CLEAR, Color.BLUE);
+                consolePanel.appendToPane(consolePanel.console,  string.ntab + Commands.HELP_CLEAR, Color.BLUE);
+                newBlackLine();
+                break;
+
+            case Commands.LANGUAGE + " " + Commands.ENGLISH:
+                string = new String_Constants(Commands.ENGLISH);
+                consolePanel.appendToPane(consolePanel.console,   string.ntab + "Language set to English.", Color.BLUE);
+                newBlackLine();
+                break;
+
+            case Commands.LANGUAGE + " " + Commands.SPANISH:
+                string = new String_Constants(Commands.SPANISH);
+                consolePanel.appendToPane(consolePanel.console,  string.ntab + "Idioma cambiado a Español.", Color.BLUE);
                 newBlackLine();
                 break;
 
             default:
+                if (!text.isEmpty() || !text.isBlank()){
+                    consolePanel.appendToPane(consolePanel.console,  string.ntab + string.commandNotFound+ text, Color.RED);
+                }
                 newBlackLine();
                 break;
         }
@@ -237,7 +252,7 @@ public class MainFrame extends JFrame {
 
                     case FOND_ID.Statement:
 
-                        AnaCap_CCN_DOC anaCap_ccn_doc = new AnaCap_CCN_DOC(path);
+                        AnaCap_CCN_DOC anaCap_ccn_doc = new AnaCap_CCN_DOC(path, string);
                         consolePanel.appendToPane(consolePanel.console, anaCap_ccn_doc.getString_all_info(), Color.BLUE);
                         newBlackLine();
                         break;
@@ -255,12 +270,12 @@ public class MainFrame extends JFrame {
 
                     case FOND_ID.Capital_Call:
 
-                        BTC_TREA_Capital_Call_Notice_DOC btc_trea_capital_call_notice_doc = new BTC_TREA_Capital_Call_Notice_DOC(path);
+                        BTC_TREA_Capital_Call_Notice_DOC btc_trea_capital_call_notice_doc = new BTC_TREA_Capital_Call_Notice_DOC(path, string);
                         consolePanel.appendToPane(consolePanel.console, btc_trea_capital_call_notice_doc.getString_all_info(), Color.BLUE);
                         break;
 
                     case FOND_ID.Statement:
-                        BTC_TREA_CAS_DOC btc_trea_cas_doc = new BTC_TREA_CAS_DOC(path);
+                        BTC_TREA_CAS_DOC btc_trea_cas_doc = new BTC_TREA_CAS_DOC(path, string);
                         consolePanel.appendToPane(consolePanel.console, btc_trea_cas_doc.getString_all_info(), Color.BLUE);
                         break;
                 }
@@ -275,12 +290,12 @@ public class MainFrame extends JFrame {
                 switch (typeDocEvent.getTypeFondId()) {
 
                     case FOND_ID.Capital_Call:
-                        Khronos_Capital_Call khronos_capital_call = new Khronos_Capital_Call(path);
+                        Khronos_Capital_Call khronos_capital_call = new Khronos_Capital_Call(path, string);
                         consolePanel.appendToPane(consolePanel.console, khronos_capital_call.getString_all_info(), Color.BLUE);
                         break;
 
                     case FOND_ID.Statement:
-                        Khronos_Statement khronos_statement = new Khronos_Statement(path);
+                        Khronos_Statement khronos_statement = new Khronos_Statement(path, string);
                         consolePanel.appendToPane(consolePanel.console, khronos_statement.getString_all_info(), Color.BLUE);
                         break;
                 }
