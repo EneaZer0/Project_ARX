@@ -81,7 +81,7 @@ public class Panel_Lower_Left extends JPanel {
         fileSelector.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                fileChooser = new JFileChooser();
+                fileChooser = new JFileChooser("C:\\Users\\migue\\OneDrive - University of Edinburgh\\EDINBURGH\\Alternative Ratings\\Project_ARX\\src\\Files_Resource");
                 fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
                 int result = fileChooser.showOpenDialog(fileChooser);
 

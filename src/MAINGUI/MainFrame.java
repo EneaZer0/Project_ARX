@@ -12,6 +12,7 @@ import READERS.BTC_TREA.BTC_TREA_CAS_DOC;
 import READERS.BTC_TREA.BTC_TREA_Capital_Call_Notice_DOC;
 import READERS.Khronos.Khronos_Capital_Call;
 import READERS.Khronos.Khronos_Statement;
+import WRITER.Generic_Writer;
 
 
 import javax.swing.*;
@@ -24,9 +25,12 @@ public class MainFrame extends JFrame {
 
     //////// Declaration of Elements Used ////////
     /**
-     * JTextPane used to display the information that has been extracted from the file, also used as a console to output information
+     * It creates an object where all the information is displayed
      */
     private Panel_Console consolePanel;
+    /**
+     * It creates the terminal part where the user can type in commands
+     */
     private Panel_Console_Input consoleInput;
     /**
      * creates the variable that contains all the string information of the program
@@ -44,8 +48,14 @@ public class MainFrame extends JFrame {
      * Variable to check if the input file is valid
      */
     private FileChecker fileChecker;
-
+    /**
+     * Variable to differentiate the types of documents
+     */
     private TypeDocEvent typeDocEvent;
+    /**
+     * Creates the object necessary to save and write all the information
+     */
+    private Generic_Writer generic_writer;
 
     /**
      * Constructor of the Frame, it set the communication between all the Panels of the program
@@ -242,7 +252,9 @@ public class MainFrame extends JFrame {
         consolePanel.appendToPane(consolePanel.console, "\n" , Color.BLACK);
     }
 
-
+    /**
+     * This is the function which reads the files depending on the file and type
+     */
     public void readFile() {
         switch (typeDocEvent.getFondId()) {
 
@@ -255,11 +267,14 @@ public class MainFrame extends JFrame {
                         AnaCap_CCN_DOC anaCap_ccn_doc = new AnaCap_CCN_DOC(path, string);
                         consolePanel.appendToPane(consolePanel.console, anaCap_ccn_doc.getString_all_info(), Color.BLUE);
                         newBlackLine();
+                        informationSender(anaCap_ccn_doc.getString_all_info());
                         break;
 
                     case FOND_ID.Capital_Call:
                         consolePanel.appendToPane(consolePanel.console, string.ntab+ "There is not AnaCap model for Capital Calls", Color.RED);
                         newBlackLine();
+                        // TODO IMPLEMENT THE INFORMATION SAVER FOR CAPITAL CALL FOR ANACAP
+                        informationSender(null);
                         break;
                 }
                 break;
@@ -272,17 +287,21 @@ public class MainFrame extends JFrame {
 
                         BTC_TREA_Capital_Call_Notice_DOC btc_trea_capital_call_notice_doc = new BTC_TREA_Capital_Call_Notice_DOC(path, string);
                         consolePanel.appendToPane(consolePanel.console, btc_trea_capital_call_notice_doc.getString_all_info(), Color.BLUE);
+                        informationSender(btc_trea_capital_call_notice_doc.getString_all_info());
                         break;
 
                     case FOND_ID.Statement:
                         BTC_TREA_CAS_DOC btc_trea_cas_doc = new BTC_TREA_CAS_DOC(path, string);
                         consolePanel.appendToPane(consolePanel.console, btc_trea_cas_doc.getString_all_info(), Color.BLUE);
+                        informationSender(btc_trea_cas_doc.getString_all_info());
                         break;
                 }
                 break;
 
             case FOND_ID.Headway:
                 consolePanel.appendToPane(consolePanel.console, string.ntab+ "The is not Headways models yet", Color.RED);
+                // TODO IMPLEMENT THE INFORMATION SAVER FOR HEADWAY
+                informationSender(null);
                 break;
 
             case FOND_ID.Khronos:
@@ -292,11 +311,13 @@ public class MainFrame extends JFrame {
                     case FOND_ID.Capital_Call:
                         Khronos_Capital_Call khronos_capital_call = new Khronos_Capital_Call(path, string);
                         consolePanel.appendToPane(consolePanel.console, khronos_capital_call.getString_all_info(), Color.BLUE);
+                        informationSender(khronos_capital_call.getString_all_info());
                         break;
 
                     case FOND_ID.Statement:
                         Khronos_Statement khronos_statement = new Khronos_Statement(path, string);
                         consolePanel.appendToPane(consolePanel.console, khronos_statement.getString_all_info(), Color.BLUE);
+                        informationSender(khronos_statement.getString_all_info());
                         break;
                 }
                 break;
@@ -304,5 +325,13 @@ public class MainFrame extends JFrame {
             default:
                 consolePanel.appendToPane(consolePanel.console, "ERROR: THE FOND SELECTED DOES NOT EXIST", Color.RED);
         }
+    }
+
+    /**
+     * This is a function which is in charge of starting the process of saving the information
+     * @param information
+     */
+    private void informationSender(String information) {
+        generic_writer = new Generic_Writer(information);
     }
 }
