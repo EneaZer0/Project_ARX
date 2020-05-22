@@ -4,7 +4,13 @@ import MAINGUI.TypeDocEventListener;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Panel_Lower_Left extends JPanel {
 
@@ -13,7 +19,9 @@ public class Panel_Lower_Left extends JPanel {
     protected JComboBox fondTypeBox;
 
     protected JLabel pathLabel;
-    protected JTextField pathInput;
+    //protected JTextField pathInput;
+    protected JFileChooser fileChooser;
+    protected JButton fileSelector;
 
     public TypeDocEventListener typeDocEventListener;
 
@@ -41,6 +49,8 @@ public class Panel_Lower_Left extends JPanel {
 
         setPath();
 
+        setFileChooser();
+
         setFondBox();
 
         setFondTypeBox();
@@ -60,8 +70,33 @@ public class Panel_Lower_Left extends JPanel {
 
     private void setPath() {
         pathLabel = new JLabel("Path: ");
-        pathInput = new JTextField(10);
+        //pathInput = new JTextField(10);
 
+
+
+    }
+
+    private void setFileChooser() {
+        fileSelector = new JButton("Open File");
+        fileSelector.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fileChooser = new JFileChooser();
+                fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+                int result = fileChooser.showOpenDialog(fileChooser);
+
+
+                File file = fileChooser.getSelectedFile();
+
+                if ((file == null) || (file.getName().equals(""))) {
+                    JOptionPane.showMessageDialog(fileChooser, "The name of the file is invalid", "The name of the file is invalid", JOptionPane.ERROR_MESSAGE);
+                } else {
+
+                }
+                assert file != null;
+                Path path = Paths.get(file.getAbsolutePath());
+            }
+        });
 
 
     }
@@ -124,7 +159,8 @@ public class Panel_Lower_Left extends JPanel {
 
         // ____________ Path Input ___________
 
-        gridOrganizer(pathInput, gridBagConstraints, y,1, noinsets, GridBagConstraints.LINE_START);
+        //gridOrganizer(pathInput, gridBagConstraints, y,1, noinsets, GridBagConstraints.LINE_START);
+        gridOrganizer(fileSelector, gridBagConstraints, y,1, noinsets, GridBagConstraints.LINE_START);
 
 
         //////////// Second Line /////////////

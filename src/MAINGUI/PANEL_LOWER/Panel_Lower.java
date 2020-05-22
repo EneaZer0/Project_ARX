@@ -9,6 +9,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.nio.file.Paths;
 
 public class Panel_Lower extends JPanel {
 
@@ -53,7 +55,9 @@ public class Panel_Lower extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String path = panel_lower_left.pathInput.getText();
+                //String path = panel_lower_left.pathInput.getText();
+                File file = panel_lower_left.fileChooser.getSelectedFile();
+                String path = file.getAbsolutePath();
                 String fond = panel_lower_left.fondBox.getSelectedItem().toString();
                 int fondId = panel_lower_left.fondBox.getSelectedIndex();
                 String fondType = panel_lower_left.fondTypeBox.getSelectedItem().toString();
@@ -148,7 +152,8 @@ public class Panel_Lower extends JPanel {
     }
 
     private void clearTextInputs(){
-        panel_lower_left.pathInput.setText("");
+        //panel_lower_left.pathInput.setText("");
+        panel_lower_left.fileChooser.setSelectedFile(new File(""));
         panel_lower_left.fondBox.setSelectedIndex(0);
         panel_lower_left.fondTypeBox.setSelectedIndex(0);
     }
