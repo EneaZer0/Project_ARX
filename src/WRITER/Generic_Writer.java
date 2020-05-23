@@ -98,22 +98,10 @@ public class Generic_Writer {
             }
         }
 
+        SavingOptionsPopUp popUp = new SavingOptionsPopUp(workbook, sheet);
 
-        JFileChooser saver = new JFileChooser("C:\\Users\\migue\\OneDrive - University of Edinburgh\\EDINBURGH\\Alternative Ratings\\Project_ARX\\src\\Files_Resource\\Savings");
-        saver.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        int result = saver.showSaveDialog(saver);
 
-        File path = saver.getSelectedFile();
-        if (!path.getPath().endsWith(".xlsx")) {
-            path = new File(saver.getSelectedFile() + ".xlsx");
-        }
 
-        try  {
-            FileOutputStream outputStream = new FileOutputStream(path.getPath());
-            workbook.write(outputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }
